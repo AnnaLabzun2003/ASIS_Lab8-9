@@ -1,25 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
+const departmentController = require('../controller/department.controller')
+
 // Маршрут для отримання списку всіх департаментів
-router.get('/departments', (req, res) => {
-    // Логіка для отримання списку департаментів з бази даних або іншого джерела
-    res.send('Отримання списку департаментів');
-});
+router.get('/', departmentController.findAll);
+router.post('/', departmentController.create);
+router.get('/:id', departmentController.findById);
+router.put('/:id', departmentController.update);
+router.delete('/:id', departmentController.delete);
 
-// Маршрут для створення нового департаменту
-router.post('/departments', (req, res) => {
-    // Логіка для створення нового департаменту
-    res.send('Створення нового департаменту');
-});
-
-// Маршрут для отримання конкретного департаменту за ідентифікатором
-router.get('/departments/:id', (req, res) => {
-    const departmentId = req.params.id;
-    // Логіка для отримання департаменту за ідентифікатором
-    res.send(`Отримання департаменту з ідентифікатором ${departmentId}`);
-});
-
-// Додайте інші маршрути, які вам потрібні для вашого додатку
 
 module.exports = router;

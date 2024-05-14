@@ -1,4 +1,5 @@
 var connection = require('./../config/config.bd');
+
 var Client  = function (dovid_client){
     this.id_client = dovid_client.id_client;
     this.client_name = dovid_client.client_name;
@@ -58,7 +59,7 @@ Client.update = function (id, client, result){
 };
 
 Client.delete = function (id, result){
-    connection.query("DELETE FEOM dovid_client WHERE id_client = ? ", [id], function(err, res){
+    connection.query("DELETE FROM dovid_client WHERE id_client = ? ", [id], function(err, res){
         if (err){
             console.log("error: ", err);
             result(err, null);
@@ -69,4 +70,8 @@ Client.delete = function (id, result){
     } );
 };
 
+
+
 module.exports = Client;
+
+

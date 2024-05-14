@@ -1,36 +1,36 @@
-const Client = require('../model/department.model');
+const LandMark = require('../model/landmark.model.js');
 
 
 
 exports.findAll = function (req, res){
-    Client.findAll(function(err, client){
+    LandMark.findAll(function(err, landmark){
         console.log('controller');
         if (err)
             res.send(err);
-        res.send(client);
+        res.send(landmark);
     });
 };
 
-exports.create = function (req, res){
-    const new_client = new Client(req.body);
+exports.create= function (req, res){
+    const new_landmark = new LandMark(req.body);
 
     if (req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.status(400).send({error: true, massage: 'Please provide all required failed'});
     }
     else {
-        Client.create(new_client, function(err, client){
+        LandMark.create(new_landmark, function(err, landmark){
             if (err)
                 res.send(err);
-            res.json({error: false, massage: "department added successfuly", data: client});
+            res.json({error: false, massage: "landmark added successfuly", data: landmark});
         });
     }
 };
 
 exports.findById = function (req, res){
-    Client.findById(req.params.id, function(err,client){
+    LandMark.findById(req.params.id, function(err,landmark){
         if (err)
             res.send(err);
-        res.json(client);
+        res.json(landmark);
     });
 };
 
@@ -39,27 +39,19 @@ exports.update = function (req, res){
         res.status(400).send({error: true, massage: 'Please provide all required failed'});
     }
     else {
-        Client.update(req.params.id, new Client(req.body), function(err, client){
+        LandMark.update(req.params.id, new LandMark(req.body), function(err, landmark){
             if (err)
                 res.send(err);
-            res.json({error: false, massage: "client added successfuly"});
+            res.json({error: false, massage: "landmark added successfuly"});
         });
     }
 };
 
 exports.delete = function (req, res){
-   Client.delete(req.params.id, function(err, client){
+    LandMark.delete(req.params.id, function(err, landmark){
     console.log("HI" + req.params.id);
     if (err)
         res.send(err);
-    res.json({error: false, masage: "department sucsesfully delatet"});
+    res.json({error: false, masage: "landmark sucsesfully delatet"});
    });
 };
-
-
-
-
-
-
-
-

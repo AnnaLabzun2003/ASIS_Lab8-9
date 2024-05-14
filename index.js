@@ -3,7 +3,7 @@ const express=require('express');
 const bodyParser = require('body-parser');
 
 
-const PORT = 8012;
+const PORT = 5000;
 const app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -21,6 +21,12 @@ app.listen(PORT, () => console.log("SERVER START!!!"));
 
 const departmentRoutes = require ('./router/department.routers'); 
 app.use('/api/department', departmentRoutes);
+
+const guideRoutes = require ('./router/guide.routers.js'); 
+app.use('/api/guide', guideRoutes);
+
+const landmarkRoutes = require ('./router/landmark.routers.js'); 
+app.use('/api/landmark', landmarkRoutes);
 
 
 

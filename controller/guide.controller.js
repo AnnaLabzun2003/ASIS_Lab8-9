@@ -1,36 +1,36 @@
-const Client = require('../model/department.model');
+const Guide = require('../model/guide.model.js');
 
 
 
 exports.findAll = function (req, res){
-    Client.findAll(function(err, client){
+    Guide.findAll(function(err, guide){
         console.log('controller');
         if (err)
             res.send(err);
-        res.send(client);
+        res.send(guide);
     });
 };
 
-exports.create = function (req, res){
-    const new_client = new Client(req.body);
+exports.create= function (req, res){
+    const new_guide = new Guide(req.body);
 
     if (req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.status(400).send({error: true, massage: 'Please provide all required failed'});
     }
     else {
-        Client.create(new_client, function(err, client){
+        Guide.create(new_guide, function(err, guide){
             if (err)
                 res.send(err);
-            res.json({error: false, massage: "department added successfuly", data: client});
+            res.json({error: false, massage: "guide added successfuly", data: guide});
         });
     }
 };
 
 exports.findById = function (req, res){
-    Client.findById(req.params.id, function(err,client){
+    Guide.findById(req.params.id, function(err,guide){
         if (err)
             res.send(err);
-        res.json(client);
+        res.json(guide);
     });
 };
 
@@ -39,27 +39,19 @@ exports.update = function (req, res){
         res.status(400).send({error: true, massage: 'Please provide all required failed'});
     }
     else {
-        Client.update(req.params.id, new Client(req.body), function(err, client){
+        Guide.update(req.params.id, new Guide(req.body), function(err, guide){
             if (err)
                 res.send(err);
-            res.json({error: false, massage: "client added successfuly"});
+            res.json({error: false, massage: "guide added successfuly"});
         });
     }
 };
 
 exports.delete = function (req, res){
-   Client.delete(req.params.id, function(err, client){
+    Guide.delete(req.params.id, function(err, guide){
     console.log("HI" + req.params.id);
     if (err)
         res.send(err);
-    res.json({error: false, masage: "department sucsesfully delatet"});
+    res.json({error: false, masage: "guide sucsesfully delatet"});
    });
 };
-
-
-
-
-
-
-
-
